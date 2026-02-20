@@ -1,0 +1,58 @@
+{
+  "mockData": {
+    "titles": [
+      "Loft with river view in city center",
+      "Minimalist apartment near metro",
+      "Bright studio with private terrace",
+      "Cozy room close to old town",
+      "Family house with backyard",
+      "Modern hotel room for short stay"
+    ],
+    "descriptions": [
+      "Comfortable place with fast Wi-Fi, smart TV and fully equipped kitchen for a smooth city trip.",
+      "Quiet neighborhood, convenient transport and everything you need for work and rest.",
+      "Fresh renovation, stylish furniture and enough space for one or two guests.",
+      "Perfect location for walking tours, museums, cafes and local markets.",
+      "Includes basic amenities and dedicated workspace for remote work.",
+      "Great option for travelers who want to stay near city attractions."
+    ],
+    "previewImages": [
+      "https://images.example.com/preview-01.jpg",
+      "https://images.example.com/preview-02.jpg",
+      "https://images.example.com/preview-03.jpg",
+      "https://images.example.com/preview-04.jpg",
+      "https://images.example.com/preview-05.jpg",
+      "https://images.example.com/preview-06.jpg"
+    ],
+    "images": [
+      "https://images.example.com/photo-01.jpg",
+      "https://images.example.com/photo-02.jpg",
+      "https://images.example.com/photo-03.jpg",
+      "https://images.example.com/photo-04.jpg",
+      "https://images.example.com/photo-05.jpg",
+      "https://images.example.com/photo-06.jpg",
+      "https://images.example.com/photo-07.jpg",
+      "https://images.example.com/photo-08.jpg",
+      "https://images.example.com/photo-09.jpg",
+      "https://images.example.com/photo-10.jpg",
+      "https://images.example.com/photo-11.jpg",
+      "https://images.example.com/photo-12.jpg"
+    ],
+    "userNames": [
+      "Alex Green",
+      "Chris Stone",
+      "Emily Fox",
+      "Mark Lee",
+      "Olivia Cole",
+      "Daniel Frost"
+    ],
+    "userEmails": [
+      "alex.green@example.com",
+      "chris.stone@example.com",
+      "emily.fox@example.com",
+      "mark.lee@example.com",
+      "olivia.cole@example.com",
+      "daniel.frost@example.com"
+    ]
+  }
+}
