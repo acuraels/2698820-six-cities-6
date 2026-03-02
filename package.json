@@ -29,6 +29,7 @@
     "convict-format-with-validator": "^6.2.0",
     "dotenv": "^16.4.7",
     "inversify": "^6.0.2",
+    "mongoose": "^8.12.1",
     "pino": "^9.6.0",
     "reflect-metadata": "^0.2.2"
   },
