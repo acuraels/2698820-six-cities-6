@@ -26,6 +26,18 @@ export class DefaultConfig implements Config {
         env: 'DB_HOST',
         default: ''
       },
+      DB_PORT: {
+        doc: 'Database port',
+        format: 'port',
+        env: 'DB_PORT',
+        default: 27017
+      },
+      DB_NAME: {
+        doc: 'Database name',
+        format: String,
+        env: 'DB_NAME',
+        default: 'six-cities'
+      },
       SALT: {
         doc: 'Random salt for hashing',
         format: (value: string) => {

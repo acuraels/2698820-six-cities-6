@@ -15,7 +15,7 @@ export const runCli = async (): Promise<void> => {
       printVersion();
       break;
     case '--import':
-      await runImport(args[0]);
+      await runImport(args[0], args[1]);
       break;
     case '--generate':
       await runGenerate(args[0], args[1], args[2]);
