@@ -5,6 +5,8 @@ export const Component = {
   DatabaseClient: Symbol('DatabaseClient'),
   UserModel: Symbol('UserModel'),
   OfferModel: Symbol('OfferModel'),
+  CommentModel: Symbol('CommentModel'),
   UserService: Symbol('UserService'),
-  OfferService: Symbol('OfferService')
+  OfferService: Symbol('OfferService'),
+  CommentService: Symbol('CommentService')
 } as const;
