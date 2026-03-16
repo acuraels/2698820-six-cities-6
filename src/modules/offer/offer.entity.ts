@@ -16,14 +16,14 @@ const OfferSchema = new Schema(
     images: [{type: String, required: true}],
     isPremium: {type: Boolean, required: true},
     isFavorite: {type: Boolean, required: true},
-    rating: {type: Number, required: true},
+    rating: {type: Number, required: true, default: 0},
     housingType: {type: String, required: true},
     roomsCount: {type: Number, required: true},
     guestsCount: {type: Number, required: true},
     rentalPrice: {type: Number, required: true},
     amenities: [{type: String, required: true}],
     authorId: {type: Schema.Types.ObjectId, ref: 'User', required: true},
-    commentsCount: {type: Number, required: true}
+    commentsCount: {type: Number, required: true, default: 0}
   },
   {
     timestamps: true

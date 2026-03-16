@@ -1,5 +1,8 @@
 import { Container } from 'inversify';
 import { Application } from '../app/application.js';
+import { DefaultCommentService } from '../modules/comment/default-comment.service.js';
+import { createCommentModel, type CommentModel } from '../modules/comment/comment.entity.js';
+import { type CommentService } from '../modules/comment/comment-service.interface.js';
 import { DefaultOfferService } from '../modules/offer/default-offer.service.js';
 import { createOfferModel, type OfferModel } from '../modules/offer/offer.entity.js';
 import { type OfferService } from '../modules/offer/offer-service.interface.js';
@@ -23,8 +26,10 @@ export const createContainer = (): Container => {
   container.bind<DatabaseClient>(Component.DatabaseClient).to(MongoDatabaseClient).inSingletonScope();
   container.bind<UserModel>(Component.UserModel).toConstantValue(createUserModel());
   container.bind<OfferModel>(Component.OfferModel).toConstantValue(createOfferModel());
+  container.bind<CommentModel>(Component.CommentModel).toConstantValue(createCommentModel());
   container.bind<UserService>(Component.UserService).to(DefaultUserService).inSingletonScope();
   container.bind<OfferService>(Component.OfferService).to(DefaultOfferService).inSingletonScope();
+  container.bind<CommentService>(Component.CommentService).to(DefaultCommentService).inSingletonScope();
 
   return container;
 };
