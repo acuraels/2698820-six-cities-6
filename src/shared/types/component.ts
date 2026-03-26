@@ -8,5 +8,8 @@ export const Component = {
   CommentModel: Symbol('CommentModel'),
   UserService: Symbol('UserService'),
   OfferService: Symbol('OfferService'),
-  CommentService: Symbol('CommentService')
+  CommentService: Symbol('CommentService'),
+  UserController: Symbol('UserController'),
+  OfferController: Symbol('OfferController'),
+  ExceptionFilter: Symbol('ExceptionFilter')
 } as const;

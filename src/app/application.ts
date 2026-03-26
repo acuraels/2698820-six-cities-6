@@ -1,23 +1,58 @@
+import express, {type Express} from 'express';
 import { inject, injectable } from 'inversify';
+import { OfferController } from '../modules/offer/offer.controller.js';
+import { UserController } from '../modules/user/user.controller.js';
 import { type Config } from '../shared/config/config.interface.js';
 import { type DatabaseClient } from '../shared/database/database-client.interface.js';
+import { type ExceptionFilter } from '../shared/exception-filter/exception-filter.interface.js';
 import { type Logger } from '../shared/libs/logger/logger.interface.js';
 import { Component } from '../shared/types/component.js';
 
 @injectable()
 export class Application {
+  private readonly app: Express;
+
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
     @inject(Component.Config) private readonly config: Config,
-    @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient
-  ) { }
+    @inject(Component.DatabaseClient) private readonly databaseClient: DatabaseClient,
+    @inject(Component.UserController) private readonly userController: UserController,
+    @inject(Component.OfferController) private readonly offerController: OfferController,
+    @inject(Component.ExceptionFilter) private readonly exceptionFilter: ExceptionFilter
+  ) {
+    this.app = express();
+  }
 
   public async init(): Promise<void> {
     const dbUri = `mongodb://${this.config.get('DB_HOST')}:${this.config.get('DB_PORT')}/${this.config.get('DB_NAME')}`;
     await this.databaseClient.connect(dbUri);
-    await this.databaseClient.disconnect();
+
+    this.registerMiddlewares();
+    this.registerRoutes();
+    this.registerExceptionFilter();
+    this.initServer();
 
     this.logger.info('Application initialized');
-    this.logger.info(`Port: ${this.config.get('PORT')}`);
+  }
+
+  private registerMiddlewares(): void {
+    this.app.use(express.json());
+  }
+
+  private registerRoutes(): void {
+    this.app.use('/api/users', this.userController.getRouter());
+    this.app.use('/api/offers', this.offerController.getRouter());
+  }
+
+  private registerExceptionFilter(): void {
+    this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
+  }
+
+  private initServer(): void {
+    const port = this.config.get('PORT');
+
+    this.app.listen(port, () => {
+      this.logger.info(`Server started on port ${port}`);
+    });
   }
 }
