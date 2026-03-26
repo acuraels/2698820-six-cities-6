@@ -17,15 +17,16 @@ export class DefaultOfferService implements OfferService {
   }
 
   public async findById(id: string): Promise<OfferDocument | null> {
-    return this.offerModel.findById(id).exec();
+    return this.offerModel.findById(id).populate('authorId').exec();
   }
 
   public async create(dto: CreateOfferDto): Promise<OfferDocument> {
-    return this.offerModel.create(dto);
+    const offer = await this.offerModel.create(dto);
+    return offer.populate('authorId');
   }
 
   public async updateById(id: string, dto: UpdateOfferDto): Promise<OfferDocument | null> {
-    return this.offerModel.findByIdAndUpdate(id, dto, {new: true}).exec();
+    return this.offerModel.findByIdAndUpdate(id, dto, {new: true}).populate('authorId').exec();
   }
 
   public async deleteById(id: string): Promise<OfferDocument | null> {
@@ -45,7 +46,7 @@ export class DefaultOfferService implements OfferService {
   }
 
   public async updateFavoriteStatus(id: string, isFavorite: boolean): Promise<OfferDocument | null> {
-    return this.offerModel.findByIdAndUpdate(id, {isFavorite}, {new: true}).exec();
+    return this.offerModel.findByIdAndUpdate(id, {isFavorite}, {new: true}).populate('authorId').exec();
   }
 
   public async updateCommentsInfo(id: string, commentsCount: number, rating: number): Promise<OfferDocument | null> {

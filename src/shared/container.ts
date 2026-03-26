@@ -1,11 +1,15 @@
 import { Container } from 'inversify';
 import { Application } from '../app/application.js';
+import { HttpExceptionFilter } from './exception-filter/http-exception-filter.js';
+import { type ExceptionFilter } from './exception-filter/exception-filter.interface.js';
+import { OfferController } from '../modules/offer/offer.controller.js';
 import { DefaultCommentService } from '../modules/comment/default-comment.service.js';
 import { createCommentModel, type CommentModel } from '../modules/comment/comment.entity.js';
 import { type CommentService } from '../modules/comment/comment-service.interface.js';
 import { DefaultOfferService } from '../modules/offer/default-offer.service.js';
 import { createOfferModel, type OfferModel } from '../modules/offer/offer.entity.js';
 import { type OfferService } from '../modules/offer/offer-service.interface.js';
+import { UserController } from '../modules/user/user.controller.js';
 import { DefaultUserService } from '../modules/user/default-user.service.js';
 import { createUserModel, type UserModel } from '../modules/user/user.entity.js';
 import { type UserService } from '../modules/user/user-service.interface.js';
@@ -30,6 +34,9 @@ export const createContainer = (): Container => {
   container.bind<UserService>(Component.UserService).to(DefaultUserService).inSingletonScope();
   container.bind<OfferService>(Component.OfferService).to(DefaultOfferService).inSingletonScope();
   container.bind<CommentService>(Component.CommentService).to(DefaultCommentService).inSingletonScope();
+  container.bind<UserController>(Component.UserController).to(UserController).inSingletonScope();
+  container.bind<OfferController>(Component.OfferController).to(OfferController).inSingletonScope();
+  container.bind<ExceptionFilter>(Component.ExceptionFilter).to(HttpExceptionFilter).inSingletonScope();
 
   return container;
 };
