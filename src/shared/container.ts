@@ -20,6 +20,8 @@ import { type DatabaseClient } from './database/database-client.interface.js';
 import { MongoDatabaseClient } from './database/mongo.database-client.js';
 import { type Logger } from './libs/logger/logger.interface.js';
 import { PinoLogger } from './libs/logger/pino.logger.js';
+import {JwtTokenService} from './token/jwt-token.service.js';
+import {type TokenService} from './token/token-service.interface.js';
 import { Component } from './types/component.js';
 
 export const createContainer = (): Container => {
@@ -28,6 +30,7 @@ export const createContainer = (): Container => {
   container.bind<Application>(Component.Application).to(Application).inSingletonScope();
   container.bind<Logger>(Component.Logger).to(PinoLogger).inSingletonScope();
   container.bind<Config>(Component.Config).to(DefaultConfig).inSingletonScope();
+  container.bind<TokenService>(Component.TokenService).to(JwtTokenService).inSingletonScope();
   container.bind<DatabaseClient>(Component.DatabaseClient).to(MongoDatabaseClient).inSingletonScope();
   container.bind<UserModel>(Component.UserModel).toConstantValue(createUserModel());
   container.bind<OfferModel>(Component.OfferModel).toConstantValue(createOfferModel());

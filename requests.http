@@ -1,6 +1,6 @@
 @host = http://localhost:4000/api
-@userId = 000000000000000000000000
 @offerId = 000000000000000000000000
+@token = paste-jwt-token-here
 
 ### Create user
 POST {{host}}/users/register
@@ -13,8 +13,22 @@ Content-Type: application/json
   "userType": "pro"
 }
 
+### Login user
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "daniil@example.com",
+  "password": "secret1"
+}
+
+### Check authorized user
+GET {{host}}/users/check
+Authorization: Bearer {{token}}
+
 ### Upload avatar
-POST {{host}}/users/{{userId}}/avatar
+POST {{host}}/users/avatar
+Authorization: Bearer {{token}}
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
@@ -27,14 +41,49 @@ Content-Type: image/png
 ### Show offers
 GET {{host}}/offers
 
+### Show favorite offers
+GET {{host}}/offers/favorites
+Authorization: Bearer {{token}}
+
 ### Show offer comments
 GET {{host}}/offers/{{offerId}}/comments
 
 ### Create comment
 POST {{host}}/offers/{{offerId}}/comments
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "text": "Great place for a short trip.",
   "rating": 5
+}
+
+### Create offer
+POST {{host}}/offers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Comfortable apartment in city center",
+  "description": "A spacious and comfortable apartment for a long weekend trip.",
+  "city": "Paris",
+  "previewImage": "https://example.com/preview.jpg",
+  "images": [
+    "https://example.com/1.jpg",
+    "https://example.com/2.jpg",
+    "https://example.com/3.jpg",
+    "https://example.com/4.jpg",
+    "https://example.com/5.jpg",
+    "https://example.com/6.jpg"
+  ],
+  "isPremium": true,
+  "housingType": "apartment",
+  "roomsCount": 3,
+  "guestsCount": 4,
+  "rentalPrice": 1200,
+  "amenities": ["Breakfast", "Washer"],
+  "coordinates": {
+    "latitude": 48.85661,
+    "longitude": 2.351499
+  }
 }

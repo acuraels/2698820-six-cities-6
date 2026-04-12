@@ -4,6 +4,7 @@ export type AppConfig = {
   DB_PORT: number;
   DB_NAME: string;
   UPLOAD_DIRECTORY: string;
+  JWT_SECRET: string;
   SALT: string;
 };
 
