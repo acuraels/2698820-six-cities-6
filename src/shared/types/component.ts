@@ -2,6 +2,7 @@ export const Component = {
   Application: Symbol('Application'),
   Logger: Symbol('Logger'),
   Config: Symbol('Config'),
+  TokenService: Symbol('TokenService'),
   DatabaseClient: Symbol('DatabaseClient'),
   UserModel: Symbol('UserModel'),
   OfferModel: Symbol('OfferModel'),

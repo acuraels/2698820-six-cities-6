@@ -44,6 +44,16 @@ export class DefaultConfig implements Config {
         env: 'UPLOAD_DIRECTORY',
         default: 'upload'
       },
+      JWT_SECRET: {
+        doc: 'Secret for signing JWT tokens',
+        format: (value: string) => {
+          if (typeof value !== 'string' || value.trim().length === 0) {
+            throw new Error('JWT_SECRET is required');
+          }
+        },
+        env: 'JWT_SECRET',
+        default: ''
+      },
       SALT: {
         doc: 'Random salt for hashing',
         format: (value: string) => {
